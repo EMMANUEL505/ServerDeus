@@ -51,7 +51,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/19/2014 07:27:27</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>02/19/2014 07:27:12</publishTime>
+      <publishTime>07/08/2015 13:20:46</publishTime>
     </File>
     <File Include="Content/themes/base/images/ui-bg_flat_0_aaaaaa_40x100.png">
       <publishTime>02/19/2014 07:27:31</publishTime>
@@ -321,7 +321,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/27/2014 09:04:50</publishTime>
     </File>
     <File Include="Views/Device/New.cshtml">
-      <publishTime>02/21/2014 10:36:51</publishTime>
+      <publishTime>07/08/2015 13:08:43</publishTime>
     </File>
     <File Include="Views/Device/senf.cshtml">
       <publishTime>02/20/2014 07:07:49</publishTime>
@@ -357,7 +357,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>02/19/2014 07:27:12</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>07/03/2015 11:37:48</publishTime>
+      <publishTime>07/08/2015 13:23:08</publishTime>
     </File>
   </ItemGroup>
 </Project>

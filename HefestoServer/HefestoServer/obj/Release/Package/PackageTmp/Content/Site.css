@@ -4,12 +4,12 @@ to use a different color start by replacing all instances of
 #5c87b2 with your new color.
 ----------------------------------------------------------*/
 body {
-    background-color: #5c87b2;
+    background-color: #191919;          /*change this for layout color theme*/
     font-size: .85em;
     font-family: "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
     margin: 0;
     padding: 0;
-    color: #696969;
+    color: #fff;
 }
 
 a:link {
@@ -18,11 +18,11 @@ a:link {
 }
 
 a:visited {
-    color: #505abc;
+    color: #9afeff;
 }
 
 a:hover {
-    color: #1d60ff;
+    color: #9afeff;
     text-decoration: none;
 }
 
@@ -46,11 +46,11 @@ section {
 ----------------------------------------------------------*/
 h1, h2, h3, h4, h5, h6 {
     font-size: 1.5em;
-    color: #000;
+    color: #fff;
 }
 
 h1 {
-    font-size: 2em;
+    font-size: 4em;
     padding-bottom: 0;
     margin-bottom: 0;
 }
@@ -85,7 +85,7 @@ page width. Or, you can specify an exact pixel width. */
 header, #header {
     position: relative;
     margin-bottom: 0px;
-    color: #000;
+    color: #d4d4d4;
     padding: 0;
 }
 
@@ -102,7 +102,7 @@ header h1, #header h1 {
 
 #main {
     padding: 30px 30px 15px 30px;
-    background-color: #fff;
+    background-color: #039cb7;
     -webkit-border-radius: 4px 0 0 0;
     -moz-border-radius: 4px 0 0 0;
     border-radius: 4px 0 0 0;
@@ -125,7 +125,7 @@ footer,
 /* TAB MENU   
 ----------------------------------------------------------*/
 ul#menu {
-    border-bottom: 1px #5C87B2 solid;
+    border-bottom: 1px #191919 solid;   /*change this for layout color */
     padding: 0 0 2px;
     position: relative;
     margin: 0;
@@ -207,6 +207,7 @@ select {
 }
 
 input[type="submit"] {
+    
     font-size: 1.2em;
     padding: 5px;
 }
