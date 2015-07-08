@@ -1,0 +1,180 @@
+﻿@model HefestoServer.Models.Device_Information
+
+@{
+    ViewBag.Title = "SaveCircuit";
+}
+
+<h2>SaveCircuit</h2>
+
+
+<input class="text-box single-line"  id="DEvice_Long" name="DEvice_Long" type="text" value="@ViewBag.lon" hidden="hidden" /><input class="text-box single-line"  id="Device_Lat" name="Device_Lat" type="text" value="@ViewBag.lati" hidden="hidden" />
+
+<input class="text-box single-line"  id="DEvice_Long1" name="DEvice_Long" type="text" value="" hidden="hidden" /><input class="text-box single-line"  id="Device_Lat1" name="Device_Lat" type="text" value="" hidden="hidden" />
+
+<input class="text-box single-line"  id="DEvice_Long2" name="DEvice_Long" type="text" value="" hidden="hidden" /><input class="text-box single-line"  id="Device_Lat2" name="Device_Lat" type="text" value="" hidden="hidden" />
+
+<input class="text-box single-line"  id="DEvice_Long3" name="DEvice_Long" type="text" value="" hidden="hidden" /><input class="text-box single-line"  id="Device_Lat3" name="Device_Lat" type="text" value="" hidden="hidden" />
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+<button type="button" onclick="myFunction()">Agregar vertice</button>
+
+<button type="button" onclick="deletevertice()">Eliminar vertice</button>
+
+<script>
+    function myFunction() {
+        if (document.getElementById("Device_Lat1").value == "") {
+            document.getElementById("Device_Lat1").value = "1";
+        }
+
+        else if (document.getElementById("Device_Lat2").value == "") {
+            document.getElementById("Device_Lat2").value = "1";
+        }
+
+        else if (document.getElementById("Device_Lat3").value == "") {
+            document.getElementById("Device_Lat3").value = "1";
+        }
+    }
+</script>
+
+
+
+<style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script>
+        // This example creates an interactive map which constructs a
+        // polyline based on user clicks. Note that the polyline only appears
+        // once its path property contains two LatLng coordinates.
+
+        var poly;
+        var map;
+
+        function initialize() {
+
+            var lat = document.getElementById("Device_Lat").value;
+            var lng = document.getElementById("DEvice_Long").value;
+
+            var mapOptions = {
+                zoom: 16,
+                // Center the map on Chicago, USA.
+                center: new google.maps.LatLng(lat, lng)
+            };
+
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+
+
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                map: map
+            });
+
+            
+
+            var polyOptions = {
+                strokeColor: '#0000FF',
+                strokeOpacity: 1.0,
+                strokeWeight: 3
+            };
+            poly = new google.maps.Polyline(polyOptions);
+            poly.setMap(map);
+
+            var path = poly.getPath();
+            path.push(map.getCenter());
+
+            // Add a listener for the click event
+            google.maps.event.addListener(map, 'click', addLatLng);
+
+
+        }
+
+        function addLatLng(event) {
+
+            var path = poly.getPath();
+
+            // Because path is an MVCArray, we can simply append a new coordinate
+            // and it will automatically appear.
+            if (document.getElementById("Device_Lat1").value == "1") {
+                path.push(event.latLng);
+
+                // Add a new marker at the new plotted point on the polyline.
+                var marker = new google.maps.Marker({
+                    position: event.latLng,
+                    title: '#' + path.getLength(),
+                    map: map
+                });
+                document.getElementById("Device_Lat1").value = event.latLng.lat();
+                document.getElementById("DEvice_Long1").value = event.latLng.lng();
+
+            }
+
+            else if (document.getElementById("Device_Lat2").value == "1") {
+                path.push(event.latLng);
+
+                // Add a new marker at the new plotted point on the polyline.
+                var marker = new google.maps.Marker({
+                    position: event.latLng,
+                    title: '#' + path.getLength(),
+                    map: map
+                });
+                document.getElementById("Device_Lat2").value = event.latLng.lat();
+                document.getElementById("DEvice_Long2").value = event.latLng.lng();
+
+            }
+
+            else if (document.getElementById("Device_Lat3").value == "1") {
+                path.push(event.latLng);
+
+                // Add a new marker at the new plotted point on the polyline.
+                var marker = new google.maps.Marker({
+                    position: event.latLng,
+                    title: '#' + path.getLength(),
+                    map: map
+                });
+                document.getElementById("Device_Lat3").value = event.latLng.lat();
+                document.getElementById("DEvice_Long3").value = event.latLng.lng();
+
+            }
+
+
+        }
+        function deletevertice() {
+            
+            if (document.getElementById("Device_Lat3").value != "" && document.getElementById("Device_Lat3").value != "1") {
+                var lat = document.getElementById("Device_Lat3").value;
+                var lng = document.getElementById("DEvice_Long3").value;
+                removeAt(new google.maps.LatLng(lat, lng));
+                document.getElementById("Device_Lat3").value="";
+                document.getElementById("DEvice_Long3").value="";
+            }
+
+            if (document.getElementById("Device_Lat2").value != "" && document.getElementById("Device_Lat2").value != "1") {
+                var lat = document.getElementById("Device_Lat2").value;
+                var lng = document.getElementById("DEvice_Long2").value;
+                removeAt(new google.maps.LatLng(lat, lng));
+                document.getElementById("Device_Lat2").value = "";
+                document.getElementById("DEvice_Long2").value = "";
+            }
+
+            if (document.getElementById("Device_Lat1").value != "" && document.getElementById("Device_Lat1").value != "1") {
+                var lat = document.getElementById("Device_Lat1").value;
+                var lng = document.getElementById("DEvice_Long1").value;
+                removeAt(new google.maps.LatLng(lat, lng));
+                document.getElementById("Device_Lat1").value = "";
+                document.getElementById("DEvice_Long1").value = "";
+            }
+        }
+
+        google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+
+
+  <body>
+    <div id="map-canvas"></div>
+  </body>

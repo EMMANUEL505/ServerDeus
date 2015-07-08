@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Hefesto_DBModelStoreContainer" CdmEntityContainer="Hefesto_DBEntities">
+    <EntitySetMapping Name="Device_Information">
+      <EntityTypeMapping TypeName="Hefesto_DBModel.Device_Information">
+        <MappingFragment StoreEntitySet="Device_Information">
+          <ScalarProperty Name="Device_Id" ColumnName="Device_Id" />
+          <ScalarProperty Name="Device_Name" ColumnName="Device_Name" />
+          <ScalarProperty Name="Device_Lat" ColumnName="Device_Lat" />
+          <ScalarProperty Name="Device_Long" ColumnName="Device_Long" />
+          <ScalarProperty Name="Device_Email" ColumnName="Device_Email" />
+          <ScalarProperty Name="Device_Mode" ColumnName="Device_Mode" />
+          <ScalarProperty Name="Device_Status" ColumnName="Device_Status" />
+          <ScalarProperty Name="Device_Zone" ColumnName="Device_Zone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Device_Monitor">
+      <EntityTypeMapping TypeName="Hefesto_DBModel.Device_Monitor">
+        <MappingFragment StoreEntitySet="Device_Monitor">
+          <ScalarProperty Name="Monitor_Id" ColumnName="Monitor_Id" />
+          <ScalarProperty Name="Monitor_Dname" ColumnName="Monitor_Dname" />
+          <ScalarProperty Name="Monitor_Current" ColumnName="Monitor_Current" />
+          <ScalarProperty Name="Monitor_Voltage" ColumnName="Monitor_Voltage" />
+          <ScalarProperty Name="Monitor_Date" ColumnName="Monitor_Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices_Alerts">
+      <EntityTypeMapping TypeName="Hefesto_DBModel.Devices_Alerts">
+        <MappingFragment StoreEntitySet="Devices_Alerts">
+          <ScalarProperty Name="Alert_Id" ColumnName="Alert_Id" />
+          <ScalarProperty Name="Alert_Dname" ColumnName="Alert_Dname" />
+          <ScalarProperty Name="Alert_Sdate" ColumnName="Alert_Sdate" />
+          <ScalarProperty Name="Alert_Edate" ColumnName="Alert_Edate" />
+          <ScalarProperty Name="Alert_Isread" ColumnName="Alert_Isread" />
+          <ScalarProperty Name="Alert_Type" ColumnName="Alert_Type" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

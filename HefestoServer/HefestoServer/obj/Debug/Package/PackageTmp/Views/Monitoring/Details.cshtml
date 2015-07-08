@@ -1,0 +1,27 @@
+﻿@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Monitoring of @ViewBag.devicename :</h2>
+<table>
+    <tr>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Id</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Name</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Date</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Status</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Current</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Voltage</td>
+    </tr>
+@foreach (var element in @ViewBag.monitoring)
+{
+    <tr>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Id</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Information.Device_Name</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Date</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Status</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Current</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Voltage</td>
+    </tr>
+}
+
+</table>

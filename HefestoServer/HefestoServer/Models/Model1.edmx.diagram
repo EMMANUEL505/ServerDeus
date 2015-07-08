@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="7c9efb24f20343d9b8dbd14731d98516" Name="Diagram1">
+        <EntityTypeShape EntityType="HefestoDevicesModel.Alert_Types" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.Alerts" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.Device_Information" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.Monitor" Width="1.5" PointX="3" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.User_Roles" Width="1.5" PointX="5.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HefestoDevicesModel.Users" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="HefestoDevicesModel.FK_Alerts_Alert_Types1" ManuallyRouted="false" />
+        <AssociationConnector Association="HefestoDevicesModel.FK_Alerts_Device_Information" ManuallyRouted="false" />
+        <AssociationConnector Association="HefestoDevicesModel.FK_Monitor_Device_Information" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

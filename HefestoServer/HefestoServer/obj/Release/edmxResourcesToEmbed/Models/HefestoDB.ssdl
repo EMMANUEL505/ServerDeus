@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HefestoDevicesModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="HefestoDevicesModelStoreContainer">
+    <EntitySet Name="Alert_Types" EntityType="HefestoDevicesModel.Store.Alert_Types" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Alerts" EntityType="HefestoDevicesModel.Store.Alerts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Device_Information" EntityType="HefestoDevicesModel.Store.Device_Information" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Monitor" EntityType="HefestoDevicesModel.Store.Monitor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="HefestoDevicesModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Alerts_Alert_Types1" Association="HefestoDevicesModel.Store.FK_Alerts_Alert_Types1">
+      <End Role="Alert_Types" EntitySet="Alert_Types" />
+      <End Role="Alerts" EntitySet="Alerts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alerts_Device_Information" Association="HefestoDevicesModel.Store.FK_Alerts_Device_Information">
+      <End Role="Device_Information" EntitySet="Device_Information" />
+      <End Role="Alerts" EntitySet="Alerts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Monitor_Device_Information" Association="HefestoDevicesModel.Store.FK_Monitor_Device_Information">
+      <End Role="Device_Information" EntitySet="Device_Information" />
+      <End Role="Monitor" EntitySet="Monitor" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Alert_Types">
+    <Key>
+      <PropertyRef Name="Alert_Typeid" />
+    </Key>
+    <Property Name="Alert_Typeid" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Description" Type="nchar" MaxLength="150" />
+    <Property Name="Alert_Priority" Type="int" />
+    <Property Name="Alert_Email" Type="nchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Alerts">
+    <Key>
+      <PropertyRef Name="Alert_Id" />
+    </Key>
+    <Property Name="Alert_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Device" Type="int" Nullable="false" />
+    <Property Name="Alert_Type" Type="int" Nullable="false" />
+    <Property Name="Alert_Isread" Type="int" />
+    <Property Name="Alert_Opendate" Type="date" Nullable="false" />
+    <Property Name="Alert_Closedate" Type="date" />
+  </EntityType>
+  <EntityType Name="Device_Information">
+    <Key>
+      <PropertyRef Name="Device_Id" />
+    </Key>
+    <Property Name="Device_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Device_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Device_Lat" Type="float" />
+    <Property Name="DEvice_Long" Type="float" />
+    <Property Name="Device_Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Device_Mode" Type="int" />
+    <Property Name="Device_Status" Type="int" />
+    <Property Name="Device_Zone" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Monitor">
+    <Key>
+      <PropertyRef Name="Monitor_Id" />
+    </Key>
+    <Property Name="Monitor_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Monitor_Device" Type="int" Nullable="false" />
+    <Property Name="Monitor_Date" Type="date" Nullable="false" />
+    <Property Name="Monitor_Status" Type="int" />
+    <Property Name="Monitor_Current" Type="float" />
+    <Property Name="Monitor_Voltage" Type="float" />
+    <Property Name="Monitor_Var1" Type="float" />
+    <Property Name="Monitor_Var2" Type="float" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Alerts_Alert_Types1">
+    <End Role="Alert_Types" Type="HefestoDevicesModel.Store.Alert_Types" Multiplicity="1" />
+    <End Role="Alerts" Type="HefestoDevicesModel.Store.Alerts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alert_Types">
+        <PropertyRef Name="Alert_Typeid" />
+      </Principal>
+      <Dependent Role="Alerts">
+        <PropertyRef Name="Alert_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alerts_Device_Information">
+    <End Role="Device_Information" Type="HefestoDevicesModel.Store.Device_Information" Multiplicity="1" />
+    <End Role="Alerts" Type="HefestoDevicesModel.Store.Alerts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device_Information">
+        <PropertyRef Name="Device_Id" />
+      </Principal>
+      <Dependent Role="Alerts">
+        <PropertyRef Name="Alert_Device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Monitor_Device_Information">
+    <End Role="Device_Information" Type="HefestoDevicesModel.Store.Device_Information" Multiplicity="1" />
+    <End Role="Monitor" Type="HefestoDevicesModel.Store.Monitor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device_Information">
+        <PropertyRef Name="Device_Id" />
+      </Principal>
+      <Dependent Role="Monitor">
+        <PropertyRef Name="Monitor_Device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

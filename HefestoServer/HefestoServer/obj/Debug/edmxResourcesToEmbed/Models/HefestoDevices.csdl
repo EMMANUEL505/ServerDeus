@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hefesto_DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="Hefesto_DBEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Device_Information" EntityType="Hefesto_DBModel.Device_Information" />
+    <EntitySet Name="Device_Monitor" EntityType="Hefesto_DBModel.Device_Monitor" />
+    <EntitySet Name="Devices_Alerts" EntityType="Hefesto_DBModel.Devices_Alerts" />
+  </EntityContainer>
+  <EntityType Name="Device_Information">
+    <Key>
+      <PropertyRef Name="Device_Id" />
+    </Key>
+    <Property Name="Device_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Device_Name" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="Device_Lat" Type="Double" />
+    <Property Name="Device_Long" Type="Double" />
+    <Property Name="Device_Email" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="Device_Mode" Type="Int32" />
+    <Property Name="Device_Status" Type="Int32" />
+    <Property Name="Device_Zone" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+  </EntityType>
+  <EntityType Name="Device_Monitor">
+    <Key>
+      <PropertyRef Name="Monitor_Id" />
+    </Key>
+    <Property Name="Monitor_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Monitor_Dname" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="Monitor_Current" Type="Double" />
+    <Property Name="Monitor_Voltage" Type="Double" />
+    <Property Name="Monitor_Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Devices_Alerts">
+    <Key>
+      <PropertyRef Name="Alert_Id" />
+    </Key>
+    <Property Name="Alert_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Dname" Type="String" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="Alert_Sdate" Type="DateTime" Precision="0" />
+    <Property Name="Alert_Edate" Type="DateTime" Precision="0" />
+    <Property Name="Alert_Isread" Type="Int32" />
+    <Property Name="Alert_Type" Type="Int32" />
+  </EntityType>
+</Schema>

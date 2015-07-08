@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Hefesto_DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="Hefesto_DBModelStoreContainer">
+    <EntitySet Name="Device_Information" EntityType="Hefesto_DBModel.Store.Device_Information" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Device_Monitor" EntityType="Hefesto_DBModel.Store.Device_Monitor" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Devices_Alerts" EntityType="Hefesto_DBModel.Store.Devices_Alerts" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="Device_Information">
+    <Key>
+      <PropertyRef Name="Device_Id" />
+    </Key>
+    <Property Name="Device_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Device_Name" Type="nchar" MaxLength="50" />
+    <Property Name="Device_Lat" Type="float" />
+    <Property Name="Device_Long" Type="float" />
+    <Property Name="Device_Email" Type="nchar" MaxLength="50" />
+    <Property Name="Device_Mode" Type="int" />
+    <Property Name="Device_Status" Type="int" />
+    <Property Name="Device_Zone" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Device_Monitor">
+    <Key>
+      <PropertyRef Name="Monitor_Id" />
+    </Key>
+    <Property Name="Monitor_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Monitor_Dname" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="Monitor_Current" Type="float" />
+    <Property Name="Monitor_Voltage" Type="float" />
+    <Property Name="Monitor_Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Devices_Alerts">
+    <Key>
+      <PropertyRef Name="Alert_Id" />
+    </Key>
+    <Property Name="Alert_Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Dname" Type="nchar" MaxLength="50" />
+    <Property Name="Alert_Sdate" Type="date" />
+    <Property Name="Alert_Edate" Type="date" />
+    <Property Name="Alert_Isread" Type="int" />
+    <Property Name="Alert_Type" Type="int" />
+  </EntityType>
+</Schema>

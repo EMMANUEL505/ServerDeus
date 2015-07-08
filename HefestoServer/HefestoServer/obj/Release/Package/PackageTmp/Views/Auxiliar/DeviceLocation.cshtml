@@ -1,0 +1,52 @@
+﻿@{
+    ViewBag.Title = "DeviceLocation";
+}
+
+<p id="lati" hidden="hidden" >@ViewBag.lati</p>
+<p id="long" hidden="hidden" >@ViewBag.lon</p>
+
+
+<body onload="initMap()">
+    <div id="map_canvas"></div>
+ 
+</body>
+
+    <style type="text/css">
+        #map_canvas {height:400px;width:400px}
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var map;
+        var markersArray = [];
+
+        function initMap() {
+            var lat = document.getElementById("lati").textContent;
+            var lng = document.getElementById("long").textContent;
+
+            var latlng = new google.maps.LatLng(lat, lng);
+
+            var myOptions = {
+                zoom: 16,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                map: map
+            });
+
+            // add marker in markers array
+            markersArray.push(marker);
+
+            google.maps.event.addListener(map, 'center_changed', function () {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(function () {
+                    map.panTo(marker.getPosition());
+                    map.setZoom(15);
+                }, 8000);
+            });
+        }
+    </script>

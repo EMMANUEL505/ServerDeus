@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HefestoDevicesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HefestoDevicesEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Alert_Types" EntityType="HefestoDevicesModel.Alert_Types" />
+    <EntitySet Name="Alerts" EntityType="HefestoDevicesModel.Alerts" />
+    <EntitySet Name="Device_Information" EntityType="HefestoDevicesModel.Device_Information" />
+    <EntitySet Name="Monitor" EntityType="HefestoDevicesModel.Monitor" />
+    <EntitySet Name="sysdiagrams" EntityType="HefestoDevicesModel.sysdiagrams" />
+    <AssociationSet Name="FK_Alerts_Alert_Types1" Association="HefestoDevicesModel.FK_Alerts_Alert_Types1">
+      <End Role="Alert_Types" EntitySet="Alert_Types" />
+      <End Role="Alerts" EntitySet="Alerts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Alerts_Device_Information" Association="HefestoDevicesModel.FK_Alerts_Device_Information">
+      <End Role="Device_Information" EntitySet="Device_Information" />
+      <End Role="Alerts" EntitySet="Alerts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Monitor_Device_Information" Association="HefestoDevicesModel.FK_Monitor_Device_Information">
+      <End Role="Device_Information" EntitySet="Device_Information" />
+      <End Role="Monitor" EntitySet="Monitor" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Alert_Types">
+    <Key>
+      <PropertyRef Name="Alert_Typeid" />
+    </Key>
+    <Property Name="Alert_Typeid" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Description" Type="String" MaxLength="150" Unicode="true" FixedLength="true" />
+    <Property Name="Alert_Priority" Type="Int32" />
+    <Property Name="Alert_Email" Type="String" MaxLength="150" Unicode="true" FixedLength="true" />
+    <NavigationProperty Name="Alerts" Relationship="HefestoDevicesModel.FK_Alerts_Alert_Types1" FromRole="Alert_Types" ToRole="Alerts" />
+  </EntityType>
+  <EntityType Name="Alerts">
+    <Key>
+      <PropertyRef Name="Alert_Id" />
+    </Key>
+    <Property Name="Alert_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Alert_Device" Type="Int32" Nullable="false" />
+    <Property Name="Alert_Type" Type="Int32" Nullable="false" />
+    <Property Name="Alert_Isread" Type="Int32" />
+    <Property Name="Alert_Opendate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Alert_Closedate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Alert_Types" Relationship="HefestoDevicesModel.FK_Alerts_Alert_Types1" FromRole="Alerts" ToRole="Alert_Types" />
+    <NavigationProperty Name="Device_Information" Relationship="HefestoDevicesModel.FK_Alerts_Device_Information" FromRole="Alerts" ToRole="Device_Information" />
+  </EntityType>
+  <EntityType Name="Device_Information">
+    <Key>
+      <PropertyRef Name="Device_Id" />
+    </Key>
+    <Property Name="Device_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Device_Name" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Device_Lat" Type="Double" />
+    <Property Name="DEvice_Long" Type="Double" />
+    <Property Name="Device_Email" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Device_Mode" Type="Int32" />
+    <Property Name="Device_Status" Type="Int32" />
+    <Property Name="Device_Zone" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Alerts" Relationship="HefestoDevicesModel.FK_Alerts_Device_Information" FromRole="Device_Information" ToRole="Alerts" />
+    <NavigationProperty Name="Monitor" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Device_Information" ToRole="Monitor" />
+  </EntityType>
+  <EntityType Name="Monitor">
+    <Key>
+      <PropertyRef Name="Monitor_Id" />
+    </Key>
+    <Property Name="Monitor_Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Monitor_Device" Type="Int32" Nullable="false" />
+    <Property Name="Monitor_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Monitor_Status" Type="Int32" />
+    <Property Name="Monitor_Current" Type="Double" />
+    <Property Name="Monitor_Voltage" Type="Double" />
+    <Property Name="Monitor_Var1" Type="Double" />
+    <Property Name="Monitor_Var2" Type="Double" />
+    <NavigationProperty Name="Device_Information" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Monitor" ToRole="Device_Information" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Alerts_Alert_Types1">
+    <End Role="Alert_Types" Type="HefestoDevicesModel.Alert_Types" Multiplicity="1" />
+    <End Role="Alerts" Type="HefestoDevicesModel.Alerts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Alert_Types">
+        <PropertyRef Name="Alert_Typeid" />
+      </Principal>
+      <Dependent Role="Alerts">
+        <PropertyRef Name="Alert_Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Alerts_Device_Information">
+    <End Role="Device_Information" Type="HefestoDevicesModel.Device_Information" Multiplicity="1" />
+    <End Role="Alerts" Type="HefestoDevicesModel.Alerts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device_Information">
+        <PropertyRef Name="Device_Id" />
+      </Principal>
+      <Dependent Role="Alerts">
+        <PropertyRef Name="Alert_Device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Monitor_Device_Information">
+    <End Role="Device_Information" Type="HefestoDevicesModel.Device_Information" Multiplicity="1" />
+    <End Role="Monitor" Type="HefestoDevicesModel.Monitor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Device_Information">
+        <PropertyRef Name="Device_Id" />
+      </Principal>
+      <Dependent Role="Monitor">
+        <PropertyRef Name="Monitor_Device" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

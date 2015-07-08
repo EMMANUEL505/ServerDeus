@@ -1,0 +1,104 @@
+﻿@model IEnumerable< HefestoServer.Models.HefestoDevicesEntities>
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@ViewBag.device.Device_Name</h2>
+<h1 style="font:bold;font-family:'Times New Roman' ;font-size:18px">Device information:</h1>
+<table>
+    <tr>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Id</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Name</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Mode</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Status</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Email address</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Latitude</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Longitude</td>
+    </tr>
+    <tr>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Id</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Name</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Mode</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Status</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Email</td>
+        <td id="lati" style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.Device_Lat</td>
+        <td id="long" style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@ViewBag.device.DEvice_Long</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("Edit","Edit",new{id =ViewBag.device.Device_Id})</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("Delete","Delete",new{id =ViewBag.device.Device_Id})</td>
+    </tr>
+</table>
+
+<h1 style="font:bold;font-family:'Times New Roman' ;font-size:18px">Alerts:</h1>
+<table>
+    <tr>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Id</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Device name</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Read</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Alert</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Creation date</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Close date</td>
+   </tr> 
+
+@foreach (var element in @ViewBag.alerts)
+{
+    <tr>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Alert_Id</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Information.Device_Name</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Alert_Isread</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Alert_Types.Alert_Description</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Alert_Opendate</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Alert_Closedate</td>
+
+    </tr>
+}
+
+</table>
+<br />
+
+<body onload="initMap()">
+    <div id="map_canvas"></div>
+ 
+</body>
+
+    <style type="text/css">
+        #map_canvas {height:400px;width:460px}
+    </style>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+        var map;
+        var markersArray = [];
+
+        function initMap() {
+            var lat = document.getElementById("lati").textContent;
+            var lng = document.getElementById("long").textContent;
+
+            var latlng = new google.maps.LatLng(lat, lng);
+
+            var myOptions = {
+                zoom: 15,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+            var marker = new google.maps.Marker({
+                position: map.getCenter(),
+                map: map
+            });
+
+            // add marker in markers array
+            markersArray.push(marker);
+
+            google.maps.event.addListener(map, 'center_changed', function () {
+                // 3 seconds after the center of the map has changed, pan back to the
+                // marker.
+                window.setTimeout(function () {
+                    map.panTo(marker.getPosition());
+                    map.setZoom(15);
+                }, 8000);
+            });
+        }
+    </script>
+
+

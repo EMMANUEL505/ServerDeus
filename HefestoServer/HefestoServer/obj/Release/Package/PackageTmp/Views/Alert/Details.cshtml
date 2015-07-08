@@ -1,0 +1,44 @@
+﻿@model HefestoServer.Models.Alerts
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Alerts</legend>
+
+    <div class="display-label">Alert Id:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alert_Id)
+    </div>
+
+    <div class="display-label">Device name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Device_Information.Device_Name)
+    </div>
+
+    <div class="display-label">Alert description:</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alert_Types.Alert_Description )
+    </div>
+
+    <div class="display-label">Alert is read?</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alert_Isread)
+    </div>
+
+    <div class="display-label">Alert open date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alert_Opendate)
+    </div>
+
+    <div class="display-label">Alert close date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Alert_Closedate)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to alerts list", "Index")
+</p>

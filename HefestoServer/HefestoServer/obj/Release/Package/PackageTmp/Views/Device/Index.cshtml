@@ -1,0 +1,35 @@
+﻿@model IEnumerable< HefestoServer.Models.HefestoDevicesEntities>
+
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Devices</h2>
+<table>
+    <tr>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Id</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Name</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Mode</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Status</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Email address</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Latitude</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Longitude</td>
+    </tr>
+@foreach (var element in @ViewBag.list)
+{
+    <tr>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Id</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Name</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Mode</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Status</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Email</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Lat</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.DEvice_Long</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("View device","Details",new{id =element.Device_Id})</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("Edit","Edit",new{id =element.Device_Id})</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("Monitor","Details","Monitoring",new{id =element.Device_Id},null)</td>
+    </tr>
+}
+
+</table>
