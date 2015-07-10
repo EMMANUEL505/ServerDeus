@@ -124,7 +124,7 @@ namespace HefestoServer.Controllers
                 Device_Information device = new Device_Information();
                 device = db.Device_Information.Find(id);
 
-                return "md" + device.Device_Mode.ToString();// +">";
+                return "md" + device.Device_Mode.ToString()+"$";
             }
             catch
             {
@@ -140,7 +140,7 @@ namespace HefestoServer.Controllers
                 Device_Information device = new Device_Information();
                 device = db.Device_Information.Find(id);
 
-                return "st" + device.Device_Status.ToString();// +">";
+                return "st" + device.Device_Status.ToString()+"$";
             }
             catch
             {
