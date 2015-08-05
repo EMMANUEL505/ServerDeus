@@ -34,6 +34,13 @@
           <ScalarProperty Name="Device_Mode" ColumnName="Device_Mode" />
           <ScalarProperty Name="Device_Status" ColumnName="Device_Status" />
           <ScalarProperty Name="Device_Zone" ColumnName="Device_Zone" />
+          <ScalarProperty Name="Device_SetPoint" ColumnName="Device_SetPoint" />
+          <ScalarProperty Name="Device_Histerresys" ColumnName="Device_Histerresys" />
+          <ScalarProperty Name="Device_OnTime" ColumnName="Device_OnTime" />
+          <ScalarProperty Name="Device_OffTime" ColumnName="Device_OffTime" />
+          <ScalarProperty Name="Device_Port_On_Over" ColumnName="Device_Port_On_Over" />
+          <ScalarProperty Name="Device_Port_Off_Under" ColumnName="Device_Port_Off_Under" />
+          <ScalarProperty Name="Device_Port_In" ColumnName="Device_Port_In" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -48,6 +55,7 @@
           <ScalarProperty Name="Monitor_Voltage" ColumnName="Monitor_Voltage" />
           <ScalarProperty Name="Monitor_Var1" ColumnName="Monitor_Var1" />
           <ScalarProperty Name="Monitor_Var2" ColumnName="Monitor_Var2" />
+          <ScalarProperty Name="Monitor_Temp" ColumnName="Monitor_Temp" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -83,12 +91,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HefestoDevicesModel.Store.sp_alterdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HefestoDevicesModel.Store.sp_creatediagram" />
-    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HefestoDevicesModel.Store.sp_dropdiagram" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HefestoDevicesModel.Store.sp_helpdiagramdefinition" />
-    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HefestoDevicesModel.Store.sp_helpdiagrams" />
-    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HefestoDevicesModel.Store.sp_renamediagram" />
-    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HefestoDevicesModel.Store.sp_upgraddiagrams" />
   </EntityContainerMapping>
 </Mapping>

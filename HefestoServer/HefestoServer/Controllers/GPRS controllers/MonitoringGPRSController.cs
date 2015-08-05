@@ -66,18 +66,49 @@ namespace HefestoServer.Controllers
 
         public string Create(int id,int status,float current, float voltage)
         {
-            var db = new HefestoDevicesEntities();
-            Monitor mon = new Monitor();
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Monitor mon = new Monitor();
 
-            mon.Monitor_Device = id;
-            mon.Monitor_Date = DateTime.Now;
-            mon.Monitor_Status = status;
-            mon.Monitor_Current = current;
-            mon.Monitor_Voltage = voltage;
-            db.Monitor.Add(mon);
-            db.SaveChanges();
+                mon.Monitor_Device = id;
+                mon.Monitor_Date = DateTime.Now;
+                mon.Monitor_Status = status;
+                mon.Monitor_Current = current;
+                mon.Monitor_Voltage = voltage;
+                db.Monitor.Add(mon);
+                db.SaveChanges();
 
-            return "OK";
+                return "OK$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
+        public string Create2(int id, int status, float current, float voltage,float var1,float var2)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Monitor mon = new Monitor();
+
+                mon.Monitor_Device = id;
+                mon.Monitor_Date = DateTime.Now;
+                mon.Monitor_Status = status;
+                mon.Monitor_Current = Math.Round(current,2);
+                mon.Monitor_Voltage = Math.Round(voltage,2);
+                mon.Monitor_Var1 = Math.Round(var1,2);
+                mon.Monitor_Var2 = Math.Round(var2, 2);
+                db.Monitor.Add(mon);
+                db.SaveChanges();
+
+                return "OK$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
         } 
 
 

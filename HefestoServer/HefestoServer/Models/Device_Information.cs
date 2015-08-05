@@ -28,6 +28,13 @@ namespace HefestoServer.Models
         public Nullable<int> Device_Mode { get; set; }
         public Nullable<int> Device_Status { get; set; }
         public string Device_Zone { get; set; }
+        public Nullable<int> Device_SetPoint { get; set; }
+        public Nullable<int> Device_Histerresys { get; set; }
+        public Nullable<System.TimeSpan> Device_OnTime { get; set; }
+        public Nullable<System.TimeSpan> Device_OffTime { get; set; }
+        public Nullable<int> Device_Port_On_Over { get; set; }
+        public Nullable<int> Device_Port_Off_Under { get; set; }
+        public Nullable<int> Device_Port_In { get; set; }
     
         public virtual ICollection<Alerts> Alerts { get; set; }
         public virtual ICollection<Monitor> Monitor { get; set; }

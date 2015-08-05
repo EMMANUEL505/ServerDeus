@@ -22,6 +22,7 @@ namespace HefestoServer.Models
         public Nullable<double> Monitor_Voltage { get; set; }
         public Nullable<double> Monitor_Var1 { get; set; }
         public Nullable<double> Monitor_Var2 { get; set; }
+        public Nullable<double> Monitor_Temp { get; set; }
     
         public virtual Device_Information Device_Information { get; set; }
     }

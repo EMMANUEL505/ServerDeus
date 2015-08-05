@@ -58,6 +58,13 @@
           <Property Name="Device_Mode" Type="int" />
           <Property Name="Device_Status" Type="int" />
           <Property Name="Device_Zone" Type="nvarchar" MaxLength="150" />
+          <Property Name="Device_SetPoint" Type="int" />
+          <Property Name="Device_Histerresys" Type="int" />
+          <Property Name="Device_OnTime" Type="time" />
+          <Property Name="Device_OffTime" Type="time" />
+          <Property Name="Device_Port_On_Over" Type="int" />
+          <Property Name="Device_Port_Off_Under" Type="int" />
+          <Property Name="Device_Port_In" Type="int" />
         </EntityType>
         <EntityType Name="Monitor">
           <Key>
@@ -71,6 +78,7 @@
           <Property Name="Monitor_Voltage" Type="float" />
           <Property Name="Monitor_Var1" Type="float" />
           <Property Name="Monitor_Var2" Type="float" />
+          <Property Name="Monitor_Temp" Type="float" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -137,37 +145,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
       </Schema>
     </edmx:StorageModels>
     <!-- CSDL content -->
@@ -193,36 +170,6 @@
             <End Role="Device_Information" EntitySet="Device_Information" />
             <End Role="Monitor" EntitySet="Monitor" />
           </AssociationSet>
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
         </EntityContainer>
         <EntityType Name="Alert_Types">
           <Key>
@@ -259,6 +206,13 @@
           <Property Name="Device_Mode" Type="Int32" />
           <Property Name="Device_Status" Type="Int32" />
           <Property Name="Device_Zone" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+          <Property Name="Device_SetPoint" Type="Int32" />
+          <Property Name="Device_Histerresys" Type="Int32" />
+          <Property Name="Device_OnTime" Type="Time" Precision="7" />
+          <Property Name="Device_OffTime" Type="Time" Precision="7" />
+          <Property Name="Device_Port_On_Over" Type="Int32" />
+          <Property Name="Device_Port_Off_Under" Type="Int32" />
+          <Property Name="Device_Port_In" Type="Int32" />
           <NavigationProperty Name="Alerts" Relationship="HefestoDevicesModel.FK_Alerts_Device_Information" FromRole="Device_Information" ToRole="Alerts" />
           <NavigationProperty Name="Monitor" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Device_Information" ToRole="Monitor" />
         </EntityType>
@@ -274,6 +228,7 @@
           <Property Name="Monitor_Voltage" Type="Double" />
           <Property Name="Monitor_Var1" Type="Double" />
           <Property Name="Monitor_Var2" Type="Double" />
+          <Property Name="Monitor_Temp" Type="Double" />
           <NavigationProperty Name="Device_Information" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Monitor" ToRole="Device_Information" />
         </EntityType>
         <EntityType Name="sysdiagrams">
@@ -380,6 +335,13 @@
                 <ScalarProperty Name="Device_Mode" ColumnName="Device_Mode" />
                 <ScalarProperty Name="Device_Status" ColumnName="Device_Status" />
                 <ScalarProperty Name="Device_Zone" ColumnName="Device_Zone" />
+                <ScalarProperty Name="Device_SetPoint" ColumnName="Device_SetPoint" />
+                <ScalarProperty Name="Device_Histerresys" ColumnName="Device_Histerresys" />
+                <ScalarProperty Name="Device_OnTime" ColumnName="Device_OnTime" />
+                <ScalarProperty Name="Device_OffTime" ColumnName="Device_OffTime" />
+                <ScalarProperty Name="Device_Port_On_Over" ColumnName="Device_Port_On_Over" />
+                <ScalarProperty Name="Device_Port_Off_Under" ColumnName="Device_Port_Off_Under" />
+                <ScalarProperty Name="Device_Port_In" ColumnName="Device_Port_In" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -394,6 +356,7 @@
                 <ScalarProperty Name="Monitor_Voltage" ColumnName="Monitor_Voltage" />
                 <ScalarProperty Name="Monitor_Var1" ColumnName="Monitor_Var1" />
                 <ScalarProperty Name="Monitor_Var2" ColumnName="Monitor_Var2" />
+                <ScalarProperty Name="Monitor_Temp" ColumnName="Monitor_Temp" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -429,13 +392,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="HefestoDevicesModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="HefestoDevicesModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="HefestoDevicesModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="HefestoDevicesModel.Store.sp_helpdiagramdefinition" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="HefestoDevicesModel.Store.sp_helpdiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="HefestoDevicesModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="HefestoDevicesModel.Store.sp_upgraddiagrams" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -11,6 +11,8 @@
         <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Status</td>
         <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Current</td>
         <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Voltage</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Sensor 1</td>
+        <td style="text-align:center;font:bold;font-family:'Times New Roman';font-size:18px">Sensor 2</td>
     </tr>
 @foreach (var element in @ViewBag.list)
 {
@@ -19,8 +21,10 @@
         <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Device_Information.Device_Name</td>
         <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Date</td>
         <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Status</td>
-        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Current</td>
-        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Voltage</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Current A</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Voltage V</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Var1 mA</td>
+        <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@element.Monitor_Var2 mA</td>
         <td style="text-align:center;font:normal;font-family:'Times New Roman';font-size:14px">@Html.ActionLink("View device monitor","Details",new{id =element.Monitor_Device})</td>
     </tr>
 }

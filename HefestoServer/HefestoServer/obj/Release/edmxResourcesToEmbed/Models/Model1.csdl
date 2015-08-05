@@ -20,36 +20,6 @@
       <End Role="Device_Information" EntitySet="Device_Information" />
       <End Role="Monitor" EntitySet="Monitor" />
     </AssociationSet>
-    <FunctionImport Name="sp_alterdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_creatediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="version" Mode="In" Type="Int32" />
-      <Parameter Name="definition" Mode="In" Type="Binary" />
-    </FunctionImport>
-    <FunctionImport Name="sp_dropdiagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagramdefinition">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_helpdiagrams">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-    </FunctionImport>
-    <FunctionImport Name="sp_renamediagram">
-      <Parameter Name="diagramname" Mode="In" Type="String" />
-      <Parameter Name="owner_id" Mode="In" Type="Int32" />
-      <Parameter Name="new_diagramname" Mode="In" Type="String" />
-    </FunctionImport>
-    <FunctionImport Name="sp_upgraddiagrams" />
   </EntityContainer>
   <EntityType Name="Alert_Types">
     <Key>
@@ -86,6 +56,13 @@
     <Property Name="Device_Mode" Type="Int32" />
     <Property Name="Device_Status" Type="Int32" />
     <Property Name="Device_Zone" Type="String" MaxLength="150" Unicode="true" FixedLength="false" />
+    <Property Name="Device_SetPoint" Type="Int32" />
+    <Property Name="Device_Histerresys" Type="Int32" />
+    <Property Name="Device_OnTime" Type="Time" Precision="7" />
+    <Property Name="Device_OffTime" Type="Time" Precision="7" />
+    <Property Name="Device_Port_On_Over" Type="Int32" />
+    <Property Name="Device_Port_Off_Under" Type="Int32" />
+    <Property Name="Device_Port_In" Type="Int32" />
     <NavigationProperty Name="Alerts" Relationship="HefestoDevicesModel.FK_Alerts_Device_Information" FromRole="Device_Information" ToRole="Alerts" />
     <NavigationProperty Name="Monitor" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Device_Information" ToRole="Monitor" />
   </EntityType>
@@ -101,6 +78,7 @@
     <Property Name="Monitor_Voltage" Type="Double" />
     <Property Name="Monitor_Var1" Type="Double" />
     <Property Name="Monitor_Var2" Type="Double" />
+    <Property Name="Monitor_Temp" Type="Double" />
     <NavigationProperty Name="Device_Information" Relationship="HefestoDevicesModel.FK_Monitor_Device_Information" FromRole="Monitor" ToRole="Device_Information" />
   </EntityType>
   <EntityType Name="sysdiagrams">
