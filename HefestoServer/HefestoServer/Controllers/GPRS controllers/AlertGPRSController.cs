@@ -109,13 +109,13 @@ namespace HefestoServer.Controllers
             //Creation of the mail's header
             string subject = "Alert from: " + device.Device_Name;
             string address = device.Device_Email;
-            string email = "hefestoserver@gmail.com";
+            string email = "hefestoserver1@gmail.com";
             string password = "Hefestoserver050505";
 
             //Send Email  message
             var loginInfo = new NetworkCredential(email, password);
             var msg = new MailMessage();
-            var smtpClient = new SmtpClient("smtp.gmail.com", 587);
+            var smtpClient = new SmtpClient("smtp.gmail.com", 465);//("smtp.live.com", 25);
 
             msg.From = new MailAddress(email);
             msg.To.Add(new MailAddress(address));
@@ -129,7 +129,7 @@ namespace HefestoServer.Controllers
             smtpClient.Send(msg);
 
             //Shows the information of the device after create alert
-            return "OK";
+            return "OK$";
         }
         
     }

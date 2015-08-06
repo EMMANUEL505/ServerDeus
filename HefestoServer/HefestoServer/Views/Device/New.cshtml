@@ -1,4 +1,4 @@
-﻿@model HefestoServer.Models.Device
+﻿@model HefestoServer.Models.Device_Information
 
 @{
     ViewBag.Title = "New";
@@ -39,22 +39,6 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Device_Mode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Device_Mode)
-            @Html.ValidationMessageFor(model => model.Device_Mode)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Device_Status)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Device_Status)
-            @Html.ValidationMessageFor(model => model.Device_Status)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.Device_Email)
         </div>
         <div class="editor-field">
@@ -70,6 +54,65 @@
             @Html.ValidationMessageFor(model => model.Device_Zone)
         </div>
 
+      <div class="editor-label">
+            @Html.LabelFor(model => model.Device_Mode)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Device_Mode, new List<SelectListItem>  
+                {   new SelectListItem { Text = "Timming mode", Value = "1"},  
+                    new SelectListItem { Text = "Manual mode", Value = "2"},  
+                    new SelectListItem { Text = "Automated mode", Value = "3"}  
+                },"Select mode", new { @onchange = "toggleDIvDisplay(this.value)" })  
+            @Html.ValidationMessageFor(model => model.Device_Mode)
+        </div>
+
+       <div id="divtimming" hidden="hidden">
+                <h1>Timming</h1>
+                <div class="editor-label">
+                   @Html.LabelFor(model => model.Device_OnTime)
+                </div>
+                <div class="editor-field">
+                   @Html.EditorFor(model => model.Device_OnTime)
+                   @Html.ValidationMessageFor(model => model.Device_OnTime)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_OffTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_OffTime)
+                    @Html.ValidationMessageFor(model => model.Device_OffTime)
+                </div>
+       </div>
+       <div id="divautomated" hidden="hidden">
+                <h1>Automated</h1>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_SetPoint)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_SetPoint,new { htmlAttributes = new { @class = "form-control", @Value = "12" } })
+                    @Html.ValidationMessageFor(model => model.Device_Histerresys)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Histerresys)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_Histerresys)
+                    @Html.ValidationMessageFor(model => model.Device_Histerresys)
+                </div>
+       </div>
+       <div id="divmanual" hidden="hidden">
+                <h1>Manual</h1>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Status)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Device_Status, new List<SelectListItem>  
+                        {   new SelectListItem { Text = "Disabled", Value = "0", Selected=true},    
+                            new SelectListItem { Text = "Enabled", Value = "1"}  
+                        }) 
+                    @Html.ValidationMessageFor(model => model.Device_Status)
+                </div>
+       </div>
         <p>
             <input type="submit" value="Create" />
         </p>
@@ -150,7 +193,38 @@
             }
         }
     </script>
+<script type="text/javascript">
+    function toggleDIvDisplay(e) {
+    if (e == 1) {
+        $('#divtimming').show();
+        $('#divautomated').hide();
+        $('#divmanual').hide();
+        /*var nodes = document.getElementById("divautomated").getElementsByTagName('*');
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].disabled = true;
+        }
+        var nodes = document.getElementById("divmanual").getElementsByTagName('*');
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].disabled = true;
+        }*/
+    }
+    else if (e == 2) {
+        $('#divtimming').hide();
+        $('#divautomated').hide();
+        $('#divmanual').show();
 
+    }
+    else if (e == 3) {
+        $('#divtimming').hide();
+        $('#divautomated').show();
+        $('#divmanual').hide();
+    }
+    else {
+        $('#divtimming').hide();
+        $('#divautomated').hide();
+        $('#divmanual').hide();
+    }
+}</script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -7,6 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 namespace HefestoServer.Models
 {
     using System;
@@ -21,19 +22,33 @@ namespace HefestoServer.Models
         }
     
         public int Device_Id { get; set; }
+        [Display(Name = "Name")]
         public string Device_Name { get; set; }
+        [Display(Name = "Latitude")]
         public Nullable<double> Device_Lat { get; set; }
+        [Display(Name = "Longitude")]
         public Nullable<double> DEvice_Long { get; set; }
+        [Display(Name = "Alerts EMAIL")]
         public string Device_Email { get; set; }
+        [Display(Name = "Operation mode")]
         public Nullable<int> Device_Mode { get; set; }
+        [Display(Name = "Device state")]
         public Nullable<int> Device_Status { get; set; }
+        [Display(Name = "Zone")]
         public string Device_Zone { get; set; }
+        [Display(Name = "Setpoint (4-20)"), Range(4, 20)]
         public Nullable<int> Device_SetPoint { get; set; }
+        [Display(Name = "Histeresys (1-5)"), Range(1,5)]
         public Nullable<int> Device_Histerresys { get; set; }
+        [Display(Name = "On time")]
         public Nullable<System.TimeSpan> Device_OnTime { get; set; }
+        [Display(Name = "Off time")]
         public Nullable<System.TimeSpan> Device_OffTime { get; set; }
+        [Display(Name = "Port status ON time/Over setpoint")]
         public Nullable<int> Device_Port_On_Over { get; set; }
+        [Display(Name = "Port status Off time/Under setpoint")]
         public Nullable<int> Device_Port_Off_Under { get; set; }
+        [Display(Name = "Port status IN setpoint")]
         public Nullable<int> Device_Port_In { get; set; }
     
         public virtual ICollection<Alerts> Alerts { get; set; }

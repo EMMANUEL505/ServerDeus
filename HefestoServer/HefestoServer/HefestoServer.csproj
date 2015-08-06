@@ -282,6 +282,7 @@
     <Content Include="Views\Auxiliar\Showlocation.cshtml" />
     <Content Include="Views\Auxiliar\DeviceLocation.cshtml" />
     <Content Include="Views\Auxiliar\SaveCircuit.cshtml" />
+    <Content Include="Views\Device\CreateNew.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

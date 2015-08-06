@@ -40,6 +40,34 @@ namespace HefestoServer.Models
         [Display(Name = "Device zone")]
         public string Device_Zone { get; set; }
 
+        
+        [Display(Name = "Device setpoint")]
+        public int Device_SetPoint { get; set; }
+
+        
+        [Display(Name = "Device Histeresys")]
+        public int Device_Histerresys { get; set; }
+
+        
+        [Display(Name = "Device_OnTime")]
+        public DateTime  Device_OnTime { get; set; }
+
+       
+        [Display(Name = "Device_OffTime")]
+        public DateTime Device_OffTime { get; set; }
+
+        
+        [Display(Name = "Device_Port_On_Over")]
+        public int Device_Port_On_Over { get; set; }
+
+        
+        [Display(Name = "Device_Port_Off_Under")]
+        public int Device_Port_Off_Under { get; set; }
+
+        
+        [Display(Name = "Device_Port_In")]
+        public int Device_Port_In { get; set; }
+
     }
 
 }

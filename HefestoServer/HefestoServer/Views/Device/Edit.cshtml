@@ -4,29 +4,27 @@
     ViewBag.Title = "Edit";
 }
          @{
-                ViewBag.id= Model.Device_Id ;
+             ViewBag.id = Model.Device_Id;
             }
 <h2>Edit</h2>
 
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Device_Information</legend>
-
-
+        <legend>Device</legend>
          <div class="editor-label">
             @Html.HiddenFor(model => model.Device_Id)
             @Html.DisplayFor(model => model.Device_Id)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Device_Name)
         </div>
-        <div class="uneditable-field">
+        <div class="editor-field">
             @Html.EditorFor(model => model.Device_Name)
             @Html.ValidationMessageFor(model => model.Device_Name)
         </div>
@@ -34,7 +32,7 @@
         <div class="editor-label">
             @Html.LabelFor(model => model.Device_Lat)
         </div>
-        <div id="lat" class="editor-field">
+        <div class="editor-field">
             @Html.EditorFor(model => model.Device_Lat)
             @Html.ValidationMessageFor(model => model.Device_Lat)
         </div>
@@ -44,7 +42,7 @@
         </div>
         <div class="editor-field">
             @Html.EditorFor(model => model.DEvice_Long)
-            @Html.ValidationMessageFor(model => model.DEvice_Long )
+            @Html.ValidationMessageFor(model => model.DEvice_Long)
         </div>
 
         <div class="editor-label">
@@ -56,22 +54,6 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.Device_Mode)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Device_Mode)
-            @Html.ValidationMessageFor(model => model.Device_Mode)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Device_Status)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Device_Status)
-            @Html.ValidationMessageFor(model => model.Device_Status)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.Device_Zone)
         </div>
         <div class="editor-field">
@@ -79,8 +61,67 @@
             @Html.ValidationMessageFor(model => model.Device_Zone)
         </div>
 
+      <div class="editor-label">
+            @Html.LabelFor(model => model.Device_Mode)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Device_Mode, new List<SelectListItem>  
+                {   new SelectListItem { Text = "Timming mode", Value = "1"},  
+                    new SelectListItem { Text = "Manual mode", Value = "2"},  
+                    new SelectListItem { Text = "Automated mode", Value = "3"}  
+                }, "Select mode", new { @onchange = "toggleDIvDisplay(this.value)" })  
+            @Html.ValidationMessageFor(model => model.Device_Mode)
+        </div>
+
+       <div id="divtimming" hidden="hidden">
+                <h1>Timming</h1>
+                <div class="editor-label">
+                   @Html.LabelFor(model => model.Device_OnTime)
+                </div>
+                <div class="editor-field">
+                   @Html.EditorFor(model => model.Device_OnTime)
+                   @Html.ValidationMessageFor(model => model.Device_OnTime)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_OffTime)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_OffTime)
+                    @Html.ValidationMessageFor(model => model.Device_OffTime)
+                </div>
+       </div>
+       <div id="divautomated" hidden="hidden">
+                <h1>Automated</h1>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_SetPoint)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_SetPoint, new { htmlAttributes = new { @class = "form-control", @Value = "12" } })
+                    @Html.ValidationMessageFor(model => model.Device_Histerresys)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Histerresys)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Device_Histerresys)
+                    @Html.ValidationMessageFor(model => model.Device_Histerresys)
+                </div>
+       </div>
+       <div id="divmanual" hidden="hidden">
+                <h1>Manual</h1>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Status)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Device_Status, new List<SelectListItem>  
+                        {   new SelectListItem { Text = "Disabled", Value = "0", Selected=true},    
+                            new SelectListItem { Text = "Enabled", Value = "1"}  
+                        }) 
+                    @Html.ValidationMessageFor(model => model.Device_Status)
+                </div>
+       </div>
         <p>
-            <input id="dd" type="submit" value="Save" />
+            <input type="submit" value="Save" />
         </p>
     </fieldset>
 }
@@ -164,7 +205,38 @@
         $("#DEvice_Long").val(data);
     });
 </script>
+<script type="text/javascript">
+    function toggleDIvDisplay(e) {
+        if (e == 1) {
+            $('#divtimming').show();
+            $('#divautomated').hide();
+            $('#divmanual').hide();
+            /*var nodes = document.getElementById("divautomated").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }
+            var nodes = document.getElementById("divmanual").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }*/
+        }
+        else if (e == 2) {
+            $('#divtimming').hide();
+            $('#divautomated').hide();
+            $('#divmanual').show();
 
+        }
+        else if (e == 3) {
+            $('#divtimming').hide();
+            $('#divautomated').show();
+            $('#divmanual').hide();
+        }
+        else {
+            $('#divtimming').hide();
+            $('#divautomated').hide();
+            $('#divmanual').hide();
+        }
+    }</script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

@@ -30,30 +30,36 @@ namespace HefestoServer.Controllers
         // GET: /Device/New
         public ActionResult New()
         {
-            return View();
-        }
+            var viewModel = new Device_Information();
+            viewModel.Device_SetPoint = 12;
+            viewModel.Device_Histerresys = 2;
+            viewModel.Device_OffTime = DateTime.Now.TimeOfDay;
+            viewModel.Device_OnTime = DateTime.Now.TimeOfDay;
+            viewModel.Device_Port_In = 0;
+            viewModel.Device_Port_Off_Under = 0;
+            viewModel.Device_Port_On_Over = 0;
 
+            return View(viewModel);
+        }
+/********************************************************************************************************************/
+//
+// GET: /Device/New
+public ActionResult CreateNew()
+{
+    
+    return View();
+}
 /********************************************************************************************************************/
         [HttpPost]
-        public ActionResult  New(Device model)
+        public ActionResult  New(Device_Information model)
         {
             if (ModelState.IsValid)
             {
                 var db = new HefestoDevicesEntities();
-                Device_Information device = new Device_Information();
-
-                device.Device_Name = model.Device_Name ;
-                device.Device_Lat = model.Device_Lat ;
-                device.DEvice_Long = model.DEvice_Long;
-                device.Device_Mode = model.Device_Mode ;
-                device.Device_Status = model.Device_Status;
-                device.Device_Email = model.Device_Email ;
-                device.Device_Zone = model.Device_Zone;
-
-                db.Device_Information.Add(device);
+                db.Device_Information.Add(model);
                 db.SaveChanges();
 
-                return RedirectToAction("Details", new { id = device.Device_Id });
+                return RedirectToAction("Details", new { id = model.Device_Id });
             }
 
             // If we got this far, something failed, redisplay form
@@ -133,12 +139,12 @@ namespace HefestoServer.Controllers
         }
 
         [HttpPost]
-        public ActionResult Edit(Device model)
+        public ActionResult Edit(Device_Information model)
 
             {
-
                 var db = new HefestoDevicesEntities();
                 Device_Information device = new Device_Information();
+                
                 device = db.Device_Information.Find(model.Device_Id);
 
           if (ModelState.IsValid)
@@ -150,6 +156,13 @@ namespace HefestoServer.Controllers
                 device.Device_Status =model.Device_Status ;
                 device.Device_Email = model.Device_Email ;
                 device.Device_Zone = model.Device_Zone;
+                device.Device_OffTime = model.Device_OffTime;
+                device.Device_OnTime = model.Device_OnTime;
+                device.Device_Port_In = model.Device_Port_In;
+                device.Device_Port_Off_Under = model.Device_Port_Off_Under;
+                device.Device_Port_On_Over = model.Device_Port_On_Over;
+                device.Device_SetPoint = model.Device_SetPoint;
+                device.Device_Histerresys = model.Device_Histerresys;
 
                 db.SaveChanges();
 

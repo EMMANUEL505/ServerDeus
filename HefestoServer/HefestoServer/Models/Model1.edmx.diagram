@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4c05ddf0e7104d49806715fe77880145" Name="Diagram1">
+      <Diagram DiagramId="a3fc666c98874c7cb9928c558d0a3137" Name="Diagram1">
         <EntityTypeShape EntityType="HefestoDevicesModel.Alert_Types" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="HefestoDevicesModel.Alerts" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="HefestoDevicesModel.Device_Information" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
