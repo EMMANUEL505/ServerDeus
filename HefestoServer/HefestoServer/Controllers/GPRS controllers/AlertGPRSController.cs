@@ -99,7 +99,7 @@ namespace HefestoServer.Controllers
 
             db.Alerts.Add(alert);
             db.SaveChanges();
-
+            /*
             //Creation of the message and maps location
             string message = "Report from: " + device.Device_Name + " about: " + mess.Alert_Description;
             message += "\r\n Location: \r\n";
@@ -126,8 +126,7 @@ namespace HefestoServer.Controllers
             smtpClient.EnableSsl = true;
             smtpClient.UseDefaultCredentials = false;
             smtpClient.Credentials = loginInfo;
-            smtpClient.Send(msg);
-
+            smtpClient.Send(msg);*/
             //Shows the information of the device after create alert
             return "OK$";
         }

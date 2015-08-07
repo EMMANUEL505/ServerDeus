@@ -147,6 +147,80 @@ namespace HefestoServer.Controllers
                 return "ERROR";
             }
         }
+        public string GetPortOn(int id)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Device_Information device = new Device_Information();
+                device = db.Device_Information.Find(id);
 
+                return "st" + device.Device_Port_On_Over.ToString() + "$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
+        public string GetPortOff(int id)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Device_Information device = new Device_Information();
+                device = db.Device_Information.Find(id);
+
+                return "st" + device.Device_Port_Off_Under.ToString() + "$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
+        public string GetPortIn(int id)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Device_Information device = new Device_Information();
+                device = db.Device_Information.Find(id);
+
+                return "st" + device.Device_Port_In.ToString() + "$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
+        public string GetSetPoint(int id)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Device_Information device = new Device_Information();
+                device = db.Device_Information.Find(id);
+
+                return "st" + device.Device_SetPoint.ToString() + "$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
+        public string GetHist(int id)
+        {
+            try
+            {
+                var db = new HefestoDevicesEntities();
+                Device_Information device = new Device_Information();
+                device = db.Device_Information.Find(id);
+
+                return "st" + device.Device_Histerresys.ToString() + "$";
+            }
+            catch
+            {
+                return "ERROR";
+            }
+        }
     }
 }

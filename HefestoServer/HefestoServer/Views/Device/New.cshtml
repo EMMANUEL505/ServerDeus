@@ -66,7 +66,8 @@
             @Html.ValidationMessageFor(model => model.Device_Mode)
         </div>
 
-       <div id="divtimming" hidden="hidden">
+        <div id="divport" hidden="hidden">
+        <div id="divtimming" hidden="hidden">
                 <h1>Timming</h1>
                 <div class="editor-label">
                    @Html.LabelFor(model => model.Device_OnTime)
@@ -99,6 +100,44 @@
                     @Html.EditorFor(model => model.Device_Histerresys)
                     @Html.ValidationMessageFor(model => model.Device_Histerresys)
                 </div>
+      
+               <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Port_In)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Device_Port_In, new List<SelectListItem>  
+                {   new SelectListItem { Text = "A = 0 , B = 0", Value = "0"},  
+                    new SelectListItem { Text = "A = 0 , B = 1", Value = "1"},  
+                    new SelectListItem { Text = "A = 1 , B = 0", Value = "2"},  
+                    new SelectListItem { Text = "A = 1 , B = 1", Value = "3"} 
+                },"Select mode")
+                    @Html.ValidationMessageFor(model => model.Device_Port_In)
+                </div>
+       </div>
+                      <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Port_On_Over)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Device_Port_On_Over, new List<SelectListItem>  
+                {   new SelectListItem { Text = "A = 0 , B = 0", Value = "0"},  
+                    new SelectListItem { Text = "A = 0 , B = 1", Value = "1"},  
+                    new SelectListItem { Text = "A = 1 , B = 0", Value = "2"},  
+                    new SelectListItem { Text = "A = 1 , B = 1", Value = "3"} 
+                },"Select mode")
+                    @Html.ValidationMessageFor(model => model.Device_Port_On_Over)
+                </div>
+               <div class="editor-label">
+                    @Html.LabelFor(model => model.Device_Port_Off_Under)
+                </div>
+                <div class="editor-field">
+                    @Html.DropDownListFor(model => model.Device_Port_Off_Under, new List<SelectListItem>  
+                {   new SelectListItem { Text = "A = 0 , B = 0", Value = "0"},  
+                    new SelectListItem { Text = "A = 0 , B = 1", Value = "1"},  
+                    new SelectListItem { Text = "A = 1 , B = 0", Value = "2"},  
+                    new SelectListItem { Text = "A = 1 , B = 1", Value = "3"} 
+                },"Select mode")
+                    @Html.ValidationMessageFor(model => model.Device_Port_Off_Under)
+                </div>
        </div>
        <div id="divmanual" hidden="hidden">
                 <h1>Manual</h1>
@@ -107,9 +146,11 @@
                 </div>
                 <div class="editor-field">
                     @Html.DropDownListFor(model => model.Device_Status, new List<SelectListItem>  
-                        {   new SelectListItem { Text = "Disabled", Value = "0", Selected=true},    
-                            new SelectListItem { Text = "Enabled", Value = "1"}  
-                        }) 
+                {   new SelectListItem { Text = "A = 0 , B = 0", Value = "0"},  
+                    new SelectListItem { Text = "A = 0 , B = 1", Value = "1"},  
+                    new SelectListItem { Text = "A = 1 , B = 0", Value = "2"},  
+                    new SelectListItem { Text = "A = 1 , B = 1", Value = "3"} 
+                },"Select mode")
                     @Html.ValidationMessageFor(model => model.Device_Status)
                 </div>
        </div>
@@ -195,36 +236,41 @@
     </script>
 <script type="text/javascript">
     function toggleDIvDisplay(e) {
-    if (e == 1) {
-        $('#divtimming').show();
-        $('#divautomated').hide();
-        $('#divmanual').hide();
-        /*var nodes = document.getElementById("divautomated").getElementsByTagName('*');
-        for (var i = 0; i < nodes.length; i++) {
-            nodes[i].disabled = true;
+        var lat = document.getElementById("Device_Lat").value;
+        if (e == 1) {
+            $('#divport').show();
+            $('#divtimming').show();
+            $('#divautomated').hide();
+            $('#divmanual').hide();
+            /*var nodes = document.getElementById("divautomated").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }
+            var nodes = document.getElementById("divmanual").getElementsByTagName('*');
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].disabled = true;
+            }*/
         }
-        var nodes = document.getElementById("divmanual").getElementsByTagName('*');
-        for (var i = 0; i < nodes.length; i++) {
-            nodes[i].disabled = true;
-        }*/
-    }
-    else if (e == 2) {
-        $('#divtimming').hide();
-        $('#divautomated').hide();
-        $('#divmanual').show();
+        else if (e == 2) {
+            $('#divport').hide();
+            $('#divtimming').hide();
+            $('#divautomated').hide();
+            $('#divmanual').show();
 
-    }
-    else if (e == 3) {
-        $('#divtimming').hide();
-        $('#divautomated').show();
-        $('#divmanual').hide();
-    }
-    else {
-        $('#divtimming').hide();
-        $('#divautomated').hide();
-        $('#divmanual').hide();
-    }
-}</script>
+        }
+        else if (e == 3) {
+            $('#divport').show();
+            $('#divtimming').hide();
+            $('#divautomated').show();
+            $('#divmanual').hide();
+        }
+        else {
+            $('#divport').hide();
+            $('#divtimming').hide();
+            $('#divautomated').hide();
+            $('#divmanual').hide();
+        }
+    }</script>
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
